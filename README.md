@@ -15,7 +15,14 @@ Used DietPi (jessie):
 
 Login/password: root/dietpi
 
-## Find rasp in network
+### Write img to sdcard by MacOS
+
+	$ diskutil list
+	$ diskutil unmountDisk /dev/diskN
+	$ sudo dd if=dietpi.img of=/dev/distN bs=1m
+	$ diskutil eject /dev/diskN
+
+## Find devices in the local network (connected cable or connected by wifi)
 
 $ nmap -sn 192.168.1.1/24
 
@@ -34,3 +41,4 @@ $ nmap -sn 192.168.1.1/24
 
 ### Schema
 
+![pic](https://raw.githubusercontent.com/sopovrobotics/firmware-v20170528/master/images/schema_v20170528.png)
