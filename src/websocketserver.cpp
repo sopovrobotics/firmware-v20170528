@@ -218,7 +218,7 @@ void WebSocketServer::exportPin(int pin){
 	QFile file("/sys/class/gpio/export");
 	if (file.open(QIODevice::ReadWrite)){
 		QTextStream stream( &file );
-		stream << QString::number(pin) << endl;
+		stream << "\"" << QString::number(pin) << "\"" << endl;
 	}
 }
 
@@ -228,7 +228,7 @@ void WebSocketServer::setPinValue(int pin, int value){
 	QFile file("/sys/class/gpio/gpio" + QString::number(pin) + "/value");
 	if (file.open(QIODevice::ReadWrite)){
 		QTextStream stream( &file );
-		stream << QString::number(value) << endl;
+		stream << "\"" << QString::number(value) << "\"" << endl;
 		qDebug() << "Set value " << value << " to " << pin;
 	}
 }
@@ -240,7 +240,7 @@ void WebSocketServer::directionOutPin(int pin){
 	QFile file("/sys/class/gpio/gpio" + QString::number(pin) + "/direction");
 	if (file.open(QIODevice::ReadWrite)){
 		QTextStream stream( &file );
-		stream << "out" << endl;
+		stream  << "\"" << "out"  << "\"" << endl;
 	}
 }
 

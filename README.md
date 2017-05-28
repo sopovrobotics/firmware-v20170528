@@ -57,7 +57,7 @@ $ nmap -sn 192.168.1.1/24
 	# qmake && make
 	# ln -s `pwd`/etc/sopovrobotics /etc/sopovrobotics
 	# ln -s `pwd`/etc/init.d/sopovrobotics /etc/init.d/sopovrobotics
-	# ln -s `pwd`/bin/sopovrobotics /usr/bin/sopovrobotics
+	# ln -s `pwd`/sopovrobotics /usr/bin/sopovrobotics
 	# update-rc.d -f sopovrobotics remove
 	# update-rc.d sopovrobotics defaults
 	# nano /etc/sopovrobotics/conf.ini
