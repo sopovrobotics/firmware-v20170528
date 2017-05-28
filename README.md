@@ -26,7 +26,6 @@ Login/password: root/dietpi
 
 $ nmap -sn 192.168.1.1/24
 
-
 ## Hardware
 
 1. Motor-reducer Gekko MR12-100 (2 pieces)
@@ -38,7 +37,19 @@ $ nmap -sn 192.168.1.1/24
 7. Accumulator 18650
 8. Switcher
 
-
 ### Schema
 
 ![pic](https://raw.githubusercontent.com/sopovrobotics/firmware-v20170528/master/images/schema_v20170528.png)
+
+## Building firmware
+
+### Clone repository with firmaware
+
+
+	# apt install git-core
+	# cd ~
+	# git clone https://github.com/sopovrobotics/firmware-v20170528.git
+
+### Install dependencies
+ 
+	# apt install g++ make qtchooser qt5-default libqt5websockets5 libqt5websockets5-dev
