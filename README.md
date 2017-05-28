@@ -48,8 +48,16 @@ $ nmap -sn 192.168.1.1/24
 
 	# apt install git-core
 	# cd ~
-	# git clone https://github.com/sopovrobotics/firmware-v20170528.git
+	# git clone https://github.com/sopovrobotics/firmware-v20170528.git firmware-v20170528
 
 ### Install dependencies
  
 	# apt install g++ make qtchooser qt5-default libqt5websockets5 libqt5websockets5-dev
+	# cd ~/firmware-v20170528
+	# qmake && make
+	# ln -s `pwd`/etc/sopovrobotics /etc/sopovrobotics
+	# ln -s `pwd`/etc/init.d/sopovrobotics /etc/init.d/sopovrobotics
+	# ln -s `pwd`/bin/sopovrobotics /usr/bin/sopovrobotics
+	# update-rc.d -f sopovrobotics remove
+	# update-rc.d sopovrobotics defaults
+	# nano /etc/sopovrobotics/conf.ini

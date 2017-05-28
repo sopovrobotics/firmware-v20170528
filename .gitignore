@@ -35,3 +35,4 @@ tmp/*
 Makefile
 sopovrobotics
 !etc/sopovrobotics/*
+!etc/init.d/sopovrobotics
