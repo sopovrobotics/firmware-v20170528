@@ -153,21 +153,21 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ff7aff"
+     pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="29.904836"
-     inkscape:cy="44.676989"
+     inkscape:zoom="3.959798"
+     inkscape:cx="116.84914"
+     inkscape:cy="90.147529"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
-     inkscape:window-width="1280"
-     inkscape:window-height="1000"
-     inkscape:window-x="1920"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="1985"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
@@ -178,7 +178,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -251,5 +251,18 @@
          id="path4138-6-6-2-5"
          style="fill:url(#linearGradient4200);fill-opacity:1;stroke:#000000;stroke-width:0.48000097;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:57.43735123px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="41.268311"
+       y="989.73035"
+       id="text4164"
+       sodipodi:linespacing="125%"
+       transform="scale(0.94678007,1.0562115)"><tspan
+         sodipodi:role="line"
+         id="tspan4166"
+         x="41.268311"
+         y="989.73035"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#005480;fill-opacity:1">SopovRobotics</tspan></text>
   </g>
 </svg>
