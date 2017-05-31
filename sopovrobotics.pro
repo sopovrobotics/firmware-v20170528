@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = sopovrobotics
 
-QT += core network websockets
+QT += core network websockets script
 QT -= gui
 
 CONFIG   += console

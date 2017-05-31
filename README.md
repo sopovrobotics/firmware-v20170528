@@ -48,7 +48,7 @@ $ nmap -sn 192.168.1.1/24
 
 ### Install dependencies
  
-	# apt install g++ make qtchooser qt5-default libqt5websockets5 libqt5websockets5-dev
+	# apt install g++ make qtchooser qt5-default libqt5script5 qtscript5-dev libqt5websockets5 libqt5websockets5-dev
 	# cd ~/firmware-v20170528
 	# qmake && make
 	# ln -s `pwd`/etc/sopovrobotics /etc/sopovrobotics
