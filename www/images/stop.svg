@@ -16,7 +16,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="forward.svg"
+   sodipodi:docname="stop.svg"
    inkscape:export-filename="/home/seakg/develop/rasprobotd/android-client/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
    inkscape:export-xdpi="64.800003"
    inkscape:export-ydpi="64.800003">
@@ -51,9 +51,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="113.81814"
-     inkscape:cy="98.452223"
+     inkscape:zoom="1.979899"
+     inkscape:cx="147.71826"
+     inkscape:cy="59.453844"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -95,8 +95,8 @@
     <ellipse
        style="fill:#e4a74b;fill-opacity:1;stroke:#000000;stroke-width:0.78914011;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4138-6-6-2-5"
-       cx="-118.52252"
-       cy="889.89642"
+       cx="-119.76938"
+       cy="949.88141"
        rx="29.606329"
        ry="29.60437"
        transform="matrix(-0.99974855,-0.02242402,-0.02078081,0.99978406,0,0)" />

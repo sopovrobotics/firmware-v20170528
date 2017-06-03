@@ -76,8 +76,58 @@ button{
 	display: none;
 }
 
-#roboscript{
+#roboscript textarea{
 	text-align: left;
 	width: 80%;
+	height: 400px;
     display: inline-block;
+}
+
+.hands-control{
+	width: 200px;
+    height: 200px;
+    display: inline-block;
+    background-image: url(../images/stop.svg);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+}
+
+.hands-control.forward {
+	background-image: url(../images/forward.svg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+.hands-control.backward{
+	background-image: url(../images/forward.svg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.hands-control.turnleft{
+	background-image: url(../images/forward.svg);
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+
+.hands-control.turnright{
+	background-image: url(../images/forward.svg);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+#roboscript{
+	padding-bottom: 30px;
 }

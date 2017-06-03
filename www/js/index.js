@@ -4,71 +4,80 @@
 	}, 1000);
 });*/
 
+function updateControl(s){
+	
+	var types = ['forward', 'backward', 'turnleft', 'turnright', 'stop'];
+	for(var i in types){
+		var t = types[i];
+		if($('.hands-control').hasClass(t) && s != t){
+			$('.hands-control').removeClass(t);
+		}
+
+		if(!$('.hands-control').hasClass(t) && s == t){
+			$('.hands-control').addClass(t);
+		}
+	}
+}
+
 var type = "stop";
 var connected = false;
+var roboscript_working = false;
 $(document).keydown(function(e){
-	// console.log("keydown ", e.keyCode);
-	if(e.keyCode == 38){
-		type = "forward";
-	}else if(e.keyCode == 40){
-		type = "backward";
-	}else if(e.keyCode == 37){
-		type = "turnleft";
-	}else if(e.keyCode == 39){
-		type = "turnright";
-	}else{
-		type = "stop";
+	if($('#roboscript textarea').is(":focus") || roboscript_working){
+		return;
 	}
+	// console.log("keydown ", e.keyCode);
+	var keysCode = {38: 'forward', 40: 'backward', 37: 'turnleft', 39: 'turnright'}
+	var new_type = 'stop';
+	if(keysCode[e.keyCode]){
+		new_type = keysCode[e.keyCode];
+	}
+	changeType(new_type);
 });
 
 $(document).keyup(function(e){
+	if($('#roboscript textarea').is(":focus") || roboscript_working){
+		return;
+	}
 	// console.log("keyup ", e.keyCode);
-	type = "stop";
+	changeType("stop");
 });
 
+var cmdh = {'forward': drive, 'backward': drive, 'turnleft': drive, 'turnright': drive, 'stop': stop_}
+function changeType(t){
+	if(type != t){
+		type = t;
+		if(connected == true){
+			cmdh[type](type);
+			updateControl(type);
+		}
+	}
+}
+
+/*
 setInterval(function(){
-	if(connected == false)
-		return;
 
 	if(type == "forward"){
-		$('#forward_').show();
 		drive("forward");
-	}else{
-		$('#forward_').hide();
 	}
-	
+
 	if(type == "backward"){
-		$('#backward_').show();
 		drive("backward");
-	}else{
-		$('#backward_').hide();
 	}
-	
+
 	if(type == "turnleft"){
-		$('#turnleft_').show();
 		drive("turnleft");
-	}else{
-		$('#turnleft_').hide();
 	}
-	
+
 	if(type == "turnright"){
-		$('#turnright_').show();
 		drive("turnright");
-	}else{
-		$('#turnright_').hide();
 	}
 	
 	if(type == "stop"){
 		stop();
 	}
-	
-}, 200);
-
-function takevideo0(){
-	if(connected == false)
-		return;
-	//window.socket.send(JSON.stringify({'cmd':'takevideo0'}));
-}
+	updateControl(type);
+}, 200);*/
 
 var lastSendedCommand = ''; 
 
@@ -81,7 +90,35 @@ function drive(cmd){
 	}
 }
 
+function sleep_(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function sleep(ms) {
+  await sleep_(ms);
+}
+
+function forward(){
+	changeType('forward');
+}
+
+function backward(){
+	changeType('backward');
+}
+
+function turnleft(){
+	changeType('turnleft');
+}
+
+function turnright(){
+	changeType('turnright');
+}
+
 function stop(){
+	changeType('stop');
+}
+
+function stop_(){
 	if(connected == false)
 		return;
 	if(lastSendedCommand != 'stop'){
@@ -90,21 +127,13 @@ function stop(){
 	}
 }
 
-setInterval(function(){
-	if(connected == false)
-		return;
-	takevideo0();
-}, 2000);
-
 
 if(window.localStorage.getItem('roboscript') == null){
 	window.localStorage.setItem('roboscript', ""
-		+ "function main(){\n"
 		+ "  turnleft(); sleep(1000); stop();\n"
 		+ "  forward(); sleep(1000); stop();\n"
 		+ "  backward(); sleep(1000); stop();\n"
 		+ "  turnright(); sleep(1000); stop();\n"
-		+ "}"
 	)
 }
 
@@ -116,7 +145,6 @@ $(document).ready(function(){
 		window.socket.onopen = function() {
 			$('.controlpanel').css({'display': 'table'});
 			connected = true;
-			takevideo0();
 		};
 
 		window.socket.onclose = function(event) {
@@ -161,5 +189,32 @@ $(document).ready(function(){
 		};
 	});
 
-	$('#roboscript').html(window.localStorage.getItem('roboscript'));
+	$('#roboscript textarea').val(window.localStorage.getItem('roboscript'));
+	$('#roboscript textarea').unbind().bind('input propertychange', function(){
+		window.localStorage.setItem('roboscript', $('#roboscript textarea').val());
+	});
+	
+	$('#run').unbind().bind('click', function(){
+		var text = $('#roboscript textarea').val();
+		// text = text.replaceAll('sleep', 'await sleep');
+		text = text.replace(new RegExp('sleep', 'g'), "await sleep");
+		console.log(text);
+		text = 'window.execute_roboscript = async function() {roboscript_started(); ' + text + ' roboscript_ended();}';
+		eval(text);
+		window.execute_roboscript_t = setTimeout(execute_roboscript,1);
+	});
 })
+
+function roboscript_started(){
+	roboscript_working = true;
+	console.log("roboscript_started");
+	$('#roboscript textarea').css({'background': 'silver'});
+}
+
+function roboscript_ended(){
+	roboscript_working = false;
+	console.log("roboscript_ended");
+	$("#roboscript textarea").removeAttr('readonly');
+	$('#roboscript textarea').css({'background': ''});
+	stop();
+}
