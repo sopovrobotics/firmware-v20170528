@@ -137,7 +137,6 @@ if(window.localStorage.getItem('roboscript') == null){
 	)
 }
 
-
 $(document).ready(function(){
 	$('#connect').click(function(){
 		$('.connectionform').hide();
