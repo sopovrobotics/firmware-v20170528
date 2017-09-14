@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Сен 10 2017 г., 22:46
+-- Время создания: Сен 14 2017 г., 11:26
 -- Версия сервера: 5.7.19-0ubuntu0.17.04.1
 -- Версия PHP: 7.0.22-0ubuntu0.17.04.1
 
@@ -44,6 +44,36 @@ INSERT INTO `users` (`id`, `login`, `password`, `role`, `dt`) VALUES
 (3, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', '2017-09-10 22:32:08'),
 (4, '123', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'user', '2017-09-10 22:44:27');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users_scripts`
+--
+
+CREATE TABLE `users_scripts` (
+  `id` int(4) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `script` text NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `time_exec` int(11) NOT NULL,
+  `result` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users_scripts`
+--
+
+INSERT INTO `users_scripts` (`id`, `userid`, `script`, `status`, `time_exec`, `result`) VALUES
+(1, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(2, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(3, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(4, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(5, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(6, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(7, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(8, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
+(9, 1, 'dl;sfak;dskfdsakf', 'revoke', 0, 0);
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -56,6 +86,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `login_idx` (`login`);
 
 --
+-- Индексы таблицы `users_scripts`
+--
+ALTER TABLE `users_scripts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -64,6 +100,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT для таблицы `users_scripts`
+--
+ALTER TABLE `users_scripts`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
