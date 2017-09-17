@@ -15,6 +15,7 @@
 			exit;
 		}
 	}
+
 	$userid = $_SESSION['userid'];
 	$conn = SLib::db_connection();
 	
@@ -48,8 +49,7 @@
 		}
 		exit;
 	}
-	
-	
+
 ?>
 <html>
 	<head>
@@ -62,13 +62,13 @@
 		<script type="text/javascript" src="CodeMirror/codemirror.js"></script>
 		<link href="CodeMirror/codemirror.css" rel="stylesheet" />
 		<link href="CodeMirror/theme/cobalt.css" rel="stylesheet" />
-		<link href="CodeMirror/mode/javascript/javascript.js" rel="stylesheet" />
+		<script type="text/javascript" src="CodeMirror/mode/javascript/javascript.js"></script>
 
-<style>
-	.CodeMirror{
-		font-size: large;
-	}
-</style>
+		<style>
+			.CodeMirror{
+				font-size: large;
+			}
+		</style>
 
 	</head>
 	<body>

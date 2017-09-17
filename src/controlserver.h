@@ -1,32 +1,37 @@
-#ifndef WEBSOCKETSERVER_H
-#define WEBSOCKETSERVER_H
+#ifndef CONTROLSERVER_H
+#define CONTROLSERVER_H
 
 #include <QObject>
 #include <QString>
 #include <QWebSocket>
 #include <QWebSocketServer>
 #include <QMap>
+#include <QElapsedTimer>
+#include <QThread>
 #include "interfaces/icmdhandler.h"
-#include "interfaces/iwebsocketserver.h"
+#include "interfaces/icontrolserver.h"
 
 // QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 // QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
-class WebSocketServer : public QObject, public IWebSocketServer {
+class ControlServer : public QObject, public IControlServer {
 	
 	private:
 		Q_OBJECT
 	public:
-		explicit WebSocketServer(quint16 port, QObject *parent = Q_NULLPTR);
-		~WebSocketServer();
+		explicit ControlServer(ISettings *pSett, QObject *parent = Q_NULLPTR);
+		~ControlServer();
 
 		virtual void sendMessage(QWebSocket *pClient, QJsonObject obj);
 		virtual void sendMessage(QWebSocket *pClient, const QByteArray &data);
+		virtual ISettings * settings();
 		virtual void turnleft();
 		virtual void turnright();
 		virtual void forward();
 		virtual void backward();
 		virtual void stop();
+		virtual void comb_up();
+		virtual void comb_down();
 		
 		bool hasError();
 				
@@ -45,14 +50,13 @@ class WebSocketServer : public QObject, public IWebSocketServer {
 		void exportPin(int pin);
 		void setPinValue(int pin, int value);
 		void directionOutPin(int pin);
+		void pwmPin(int pin, qint64 width_signal_usec);
 			
 		QWebSocketServer *m_pWebSocketServer;
 		QList<QWebSocket *> m_clients;
 		QMap<QString, ICmdHandler *> m_mapCmdHandlers;
-		int mPinA1;
-		int mPinA2;
-		int mPinB1;
-		int mPinB2;
+		
+		ISettings *m_pSettings;
 };
 
-#endif //WEBSOCKETSERVER_H
+#endif // CONTROLSERVER_H

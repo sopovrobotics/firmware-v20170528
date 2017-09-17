@@ -4,10 +4,10 @@ QString CmdTurnleftHandler::cmd(){
 	return "turnleft";
 }
 
-void CmdTurnleftHandler::handle(QWebSocket */*pClient*/, IWebSocketServer *pWebSocketServer, QJsonObject /*obj*/){
+void CmdTurnleftHandler::handle(QWebSocket */*pClient*/, IControlServer *pControlServer, QJsonObject /*obj*/){
 	// QJsonObject jsonData;
 	// jsonData["cmd"] = QJsonValue(cmd());
 	// jsonData["result"] = "OK";
 	// pWebSocketServer->sendMessage(pClient, jsonData);
-	pWebSocketServer->turnleft();
+	pControlServer->turnleft();
 }

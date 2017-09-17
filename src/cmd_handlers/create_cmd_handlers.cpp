@@ -5,6 +5,10 @@
 #include "cmd_turnright_handler.h"
 #include "cmd_forward_handler.h"
 #include "cmd_backward_handler.h"
+#include "cmd_comb_up_handler.h"
+#include "cmd_comb_down_handler.h"
+#include "cmd_settings_handler.h"
+#include "cmd_update_settings_handler.h"
 
 void create_cmd_handlers(QMap<QString, ICmdHandler *> &pHandlers){
 	QVector<ICmdHandler *> v;
@@ -13,6 +17,10 @@ void create_cmd_handlers(QMap<QString, ICmdHandler *> &pHandlers){
 	v.push_back(new CmdBackwardHandler());
 	v.push_back(new CmdTurnleftHandler());
 	v.push_back(new CmdTurnrightHandler());
+	v.push_back(new CmdCombUpHandler());
+	v.push_back(new CmdCombDownHandler());
+	v.push_back(new CmdSettingsHandler());
+	v.push_back(new CmdUpdateSettingsHandler());
 
 	for(int i = 0; i < v.size(); i++){
 		QString cmd = v[i]->cmd();

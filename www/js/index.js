@@ -114,6 +114,14 @@ function turnright(){
 	changeType('turnright');
 }
 
+function comb_up(){
+	changeType('comb_up');
+}
+
+function comb_down(){
+	changeType('comb_down');
+}
+
 function stop(){
 	changeType('stop');
 }
