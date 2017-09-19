@@ -128,6 +128,7 @@ void ControlServer::processTextMessage(QString message) {
 
 
 	if(m_mapCmdHandlers.contains(cmd)){
+		qDebug() << cmd;
 		m_mapCmdHandlers[cmd]->handle(pClient, this, jsonData);
 	}else{
 		qDebug() << "Unknown command: " << cmd;
@@ -317,7 +318,7 @@ void ControlServer::unexportPin(int pin){
 		QTextStream stream( &file );
 		stream << QString::number(pin) << endl;
 	}else{
-		qDebug() << "Could not open gpio/unexport";
+		qDebug() << "Could not open gpio" + QString::number(pin) + "/unexport";
 	}
 }
 
@@ -329,7 +330,7 @@ void ControlServer::exportPin(int pin){
 		QTextStream stream( &file );
 		stream << QString::number(pin) << endl;
 	}else{
-		qDebug() << "Could not open gpio/export";
+		qDebug() << "Could not open gpio" + QString::number(pin) + "/export";
 	}
 }
 
@@ -342,7 +343,7 @@ void ControlServer::setPinValue(int pin, int value){
 		QTextStream stream( &file );
 		stream << QString::number(value) << endl;
 	} else {
-		qDebug() << "Could not open gpio/value";
+		qDebug() << "Could not open gpio" + QString::number(pin) + "/value";
 	}
 }
 
@@ -355,7 +356,7 @@ void ControlServer::directionOutPin(int pin){
 		QTextStream stream( &file );
 		stream  << "out" << endl;
 	}else{
-		qDebug() << "Could not open gpio/direction";
+		qDebug() << "Could not open gpio" + QString::number(pin) + "/direction";
 	}
 }
 

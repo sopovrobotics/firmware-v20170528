@@ -6,6 +6,7 @@
 class ISettings {
 	public:
 		virtual int get_port() = 0;
+		virtual void set_port(int v) = 0;
 		virtual QString get_secret() = 0;
 		virtual void set_secret(QString s) = 0;
 

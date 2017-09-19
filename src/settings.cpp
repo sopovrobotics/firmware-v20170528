@@ -150,6 +150,7 @@ bool Settings::save(){
 	QSettings sett(m_sFilename, QSettings::IniFormat);
 
 	if(!sett.isWritable()){ // TODO fix if file not exists
+		qDebug() << "Could not write new settings";
 		return false;
 	}
 	

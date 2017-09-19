@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QJsonObject>
+#include <QJsonArray>
 #include "icontrolserver.h"
 
 class ICmdHandler {
