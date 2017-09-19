@@ -59,9 +59,9 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 			  <ul class="nav navbar-nav">
-				<li class="active"><a href="./">User Scripts</a></li>
+				<li><a href="./">User Scripts</a></li>
 				<li><a href="admin_settings.php">Settings</a></li>
-				<li><a href="admin_users.php">Users</a></li>
+				<li class="active"><a href="admin_users.php">Users</a></li>
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
 				<li><a href="logout.php">Logout (<?php echo $username; ?>)</a></li>
