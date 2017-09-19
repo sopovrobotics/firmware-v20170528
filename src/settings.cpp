@@ -321,13 +321,13 @@ void Settings::set_drivers_turnleft_A1(int v){
 // ---------------------------------------------------------------------
 
 int Settings::get_drivers_turnleft_A2(){
-	return m_nDrivers_turnleft_A1;
+	return m_nDrivers_turnleft_A2;
 }
 
 // ---------------------------------------------------------------------
 
 void Settings::set_drivers_turnleft_A2(int v){
-	m_nDrivers_turnleft_A1 = v;
+	m_nDrivers_turnleft_A2 = v;
 	this->save();
 }
 
