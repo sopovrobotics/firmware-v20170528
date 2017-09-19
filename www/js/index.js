@@ -115,11 +115,11 @@ function turnright(){
 }
 
 function comb_up(){
-	changeType('comb_up');
+	window.socket.send(JSON.stringify({'cmd':'comb_up'}));
 }
 
 function comb_down(){
-	changeType('comb_down');
+	window.socket.send(JSON.stringify({'cmd':'comb_down'}));
 }
 
 function stop(){

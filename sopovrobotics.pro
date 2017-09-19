@@ -4,6 +4,7 @@ TARGET = sopovrobotics
 QT += core network websockets script
 QT -= gui
 
+
 CONFIG   += console
 CONFIG   -= app_bundle
 OBJECTS_DIR = tmp/
@@ -13,15 +14,20 @@ CONFIG += c++11 c++14
 
 INCLUDEPATH += src/interfaces
 
+RESOURCES = sopovrobotics.qrc
+
 SOURCES += \
 	src/main.cpp \
 	src/settings.cpp \
 	src/controlserver.cpp \
+	src/thread_auto.cpp \
 	src/cmd_handlers/cmd_forward_handler.cpp \
 	src/cmd_handlers/cmd_backward_handler.cpp \
 	src/cmd_handlers/cmd_turnleft_handler.cpp \
 	src/cmd_handlers/cmd_turnright_handler.cpp \
 	src/cmd_handlers/cmd_stop_handler.cpp \
+	src/cmd_handlers/cmd_start_auto_handler.cpp \
+	src/cmd_handlers/cmd_stop_auto_handler.cpp \
 	src/cmd_handlers/cmd_comb_up_handler.cpp \
 	src/cmd_handlers/cmd_comb_down_handler.cpp \
 	src/cmd_handlers/cmd_settings_handler.cpp \
@@ -34,12 +40,15 @@ HEADERS += \
 	src/interfaces/icmdhandler.h \
 	src/settings.h \
 	src/controlserver.h \
+	src/thread_auto.h \
 	src/cmd_handlers/create_cmd_handlers.h \
 	src/cmd_handlers/cmd_forward_handler.h \
 	src/cmd_handlers/cmd_backward_handler.h \
 	src/cmd_handlers/cmd_turnleft_handler.h \
 	src/cmd_handlers/cmd_turnright_handler.h \
 	src/cmd_handlers/cmd_stop_handler.h \
+	src/cmd_handlers/cmd_start_auto_handler.h \
+	src/cmd_handlers/cmd_stop_auto_handler.h \	
 	src/cmd_handlers/cmd_comb_up_handler.h \
 	src/cmd_handlers/cmd_comb_down_handler.h \
 	src/cmd_handlers/cmd_settings_handler.h \

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Сен 14 2017 г., 11:26
+-- Время создания: Сен 20 2017 г., 02:00
 -- Версия сервера: 5.7.19-0ubuntu0.17.04.1
 -- Версия PHP: 7.0.22-0ubuntu0.17.04.1
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- База данных: `controlme`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `settings`
+--
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES
+(1, 'ipaddress_robot', '192.168.1.3:7528'),
+(2, 'secret_robot', 'I0vyjA1DrL5YwBtx89O2'),
+(3, 'default_script_robot', '// comb_down();\nforward(1000);\nturnright(200);\nforward(400);\nturnright(200);\nforward(400);\nturnright(200);\n// comb_up();');
 
 -- --------------------------------------------------------
 
@@ -64,19 +85,18 @@ CREATE TABLE `users_scripts` (
 --
 
 INSERT INTO `users_scripts` (`id`, `userid`, `script`, `status`, `time_exec`, `result`) VALUES
-(1, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(2, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(3, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(4, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(5, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(6, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(7, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(8, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'revoke', 0, 0),
-(9, 1, 'dl;sfak;dskfdsakf', 'revoke', 0, 0);
+(10, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'wait', 0, 0);
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Индексы таблицы `users`
@@ -96,6 +116,11 @@ ALTER TABLE `users_scripts`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
@@ -104,7 +129,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users_scripts`
 --
 ALTER TABLE `users_scripts`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

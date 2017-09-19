@@ -312,6 +312,30 @@ void ControlServer::comb_down(){
 
 // ---------------------------------------------------------------------
 
+void ControlServer::start_auto(QString script){
+	stop_auto();
+	m_pThreadAuto = new ThreadAuto(this, script);
+	m_pThreadAuto->start();
+}
+
+// ---------------------------------------------------------------------
+
+void ControlServer::stop_auto(){
+	if(m_pThreadAuto != NULL){
+		m_pThreadAuto->terminate();
+		m_pThreadAuto = NULL;
+	}
+	stop();
+}
+
+// ---------------------------------------------------------------------
+
+/*void ControlServer::auto_stopped(){
+	// TODO send to client command
+}*/
+
+// ---------------------------------------------------------------------
+
 void ControlServer::unexportPin(int pin){
 	QFile file("/sys/class/gpio/unexport");
 	if (file.open(QIODevice::WriteOnly)){

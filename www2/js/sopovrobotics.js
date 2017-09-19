@@ -119,3 +119,20 @@ window.sopovrobotics.cmd_stop = function(){
 		'secret': self.secret
 	}));
 }
+
+window.sopovrobotics.cmd_start_auto = function(script){
+	var self = window.sopovrobotics;
+	self.socket.send(JSON.stringify({
+		'cmd':'start_auto',
+		'secret': self.secret,
+		'script': script
+	}));
+}
+
+window.sopovrobotics.cmd_stop_auto = function(){
+	var self = window.sopovrobotics;
+	self.socket.send(JSON.stringify({
+		'cmd':'stop_auto',
+		'secret': self.secret
+	}));
+}

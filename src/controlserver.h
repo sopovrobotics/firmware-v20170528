@@ -10,6 +10,7 @@
 #include <QThread>
 #include "interfaces/icmdhandler.h"
 #include "interfaces/icontrolserver.h"
+#include "thread_auto.h"
 
 // QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 // QT_FORWARD_DECLARE_CLASS(QWebSocket)
@@ -32,6 +33,8 @@ class ControlServer : public QObject, public IControlServer {
 		virtual void stop();
 		virtual void comb_up();
 		virtual void comb_down();
+		virtual void start_auto(QString script);
+		virtual void stop_auto();
 		
 		bool hasError();
 				
@@ -57,6 +60,7 @@ class ControlServer : public QObject, public IControlServer {
 		QMap<QString, ICmdHandler *> m_mapCmdHandlers;
 		
 		ISettings *m_pSettings;
+		ThreadAuto *m_pThreadAuto;
 };
 
 #endif // CONTROLSERVER_H
