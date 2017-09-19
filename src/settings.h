@@ -20,6 +20,9 @@ class Settings : public ISettings {
 	public:
 		Settings();
 		virtual int get_port();
+		virtual void set_port(int);
+		virtual QString get_secret();
+		virtual void set_secret(QString s);
 		
 		virtual int get_servo_pin_comb();
 		virtual void set_servo_pin_comb(int v);
@@ -85,10 +88,13 @@ class Settings : public ISettings {
 	
 		QString m_sFilename;
 		
+		int m_nPort;
+		QString m_sSecret;
+		
 		int m_nServo_PinComb;
 		int m_nServo_PinComb_value_up;
 		int m_nServo_PinComb_value_down;
-		int mPort;
+		
 		
 		int m_nDrivers_PIN_A1;
 		int m_nDrivers_PIN_A2;

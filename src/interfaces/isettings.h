@@ -6,6 +6,8 @@
 class ISettings {
 	public:
 		virtual int get_port() = 0;
+		virtual QString get_secret() = 0;
+		virtual void set_secret(QString s) = 0;
 
 		virtual int get_servo_pin_comb() = 0;
 		virtual void set_servo_pin_comb(int v) = 0;

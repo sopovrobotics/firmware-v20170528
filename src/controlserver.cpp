@@ -106,7 +106,26 @@ void ControlServer::processTextMessage(QString message) {
 		QJsonObject obj;
 		obj["error"] = "Invalid command format";
 		this->sendMessage(pClient, obj);
+		return;
 	}
+	
+	QString secret = "";
+	if(jsonData.contains("secret")){
+		secret = jsonData["secret"].toString();
+	}else{
+		QJsonObject obj;
+		obj["error"] = "Not found field with secret";
+		this->sendMessage(pClient, obj);
+		return;
+	}
+	
+	if(secret != m_pSettings->get_secret()){
+		QJsonObject obj;
+		obj["error"] = "Wrong secret";
+		this->sendMessage(pClient, obj);
+		return;
+	}
+
 
 	if(m_mapCmdHandlers.contains(cmd)){
 		m_mapCmdHandlers[cmd]->handle(pClient, this, jsonData);
@@ -115,6 +134,7 @@ void ControlServer::processTextMessage(QString message) {
 		QJsonObject obj;
 		obj["error"] = "Unknown command";
 		this->sendMessage(pClient, obj);
+		return;
 	}
 }
 

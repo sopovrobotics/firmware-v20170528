@@ -70,10 +70,12 @@ bool Settings::readBooleanFromSettings(QSettings &sett, QString settName, bool d
 bool Settings::load(){
 	
 	// dafault
-	mPort = 7528;
+	m_nPort = 7528;
+	m_sSecret = "";
+	
 	m_nServo_PinComb = 7;
-	m_nServo_PinComb_value_up = 100;
-	m_nServo_PinComb_value_down = 2000;
+	m_nServo_PinComb_value_up = 700;
+	m_nServo_PinComb_value_down = 1200;
 	
 	m_nDrivers_PIN_A1 = 12;
 	m_nDrivers_PIN_A2 = 11;
@@ -103,6 +105,9 @@ bool Settings::load(){
 	if(QFile::exists(m_sFilename)){
 		QSettings sett(m_sFilename, QSettings::IniFormat);
 
+		m_nPort = readIntFromSettings(sett, "MAIN/port", m_nPort);
+		m_sSecret = readStringFromSettings(sett, "MAIN/secret", m_sSecret);
+	
 		m_nServo_PinComb = readIntFromSettings(sett, "SERVO/pin_comb", m_nServo_PinComb);
 		m_nServo_PinComb_value_up = readIntFromSettings(sett, "SERVO/pin_comb_value_up", m_nServo_PinComb_value_up);
 		m_nServo_PinComb_value_down = readIntFromSettings(sett, "SERVO/pin_comb_value_down", m_nServo_PinComb_value_down);
@@ -148,6 +153,9 @@ bool Settings::save(){
 		return false;
 	}
 	
+	sett.setValue("MAIN/port", m_nPort);
+	sett.setValue("MAIN/secret", m_sSecret);
+	
 	sett.setValue("SERVO/pin_comb", m_nServo_PinComb);
 	sett.setValue("SERVO/pin_comb_value_up", m_nServo_PinComb_value_up);
 	sett.setValue("SERVO/pin_comb_value_down", m_nServo_PinComb_value_down);
@@ -183,7 +191,27 @@ bool Settings::save(){
 // ---------------------------------------------------------------------
 
 int Settings::get_port(){
-	return mPort;
+	return m_nPort;
+}
+
+// ---------------------------------------------------------------------
+
+void Settings::set_port(int v){
+	m_nPort = v;
+	this->save();
+}
+
+// ---------------------------------------------------------------------
+
+QString Settings::get_secret(){
+	return m_sSecret;
+}
+
+// ---------------------------------------------------------------------
+
+void Settings::set_secret(QString s){
+	m_sSecret = s;
+	this->save();
 }
 
 // ---------------------------------------------------------------------
@@ -196,6 +224,7 @@ int Settings::get_servo_pin_comb(){
 
 void Settings::set_servo_pin_comb(int v) {
 	m_nServo_PinComb = v;
+	this->save();
 }
 
 // ---------------------------------------------------------------------
