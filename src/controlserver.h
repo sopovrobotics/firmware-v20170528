@@ -50,7 +50,7 @@ class ControlServer : public QObject, public IControlServer {
 		void exportPin(int pin);
 		void setPinValue(int pin, int value);
 		void directionOutPin(int pin);
-		void pwmPin(int pin, qint64 width_signal_usec);
+		void pwmPin(int pin, int width_signal_usec);
 			
 		QWebSocketServer *m_pWebSocketServer;
 		QList<QWebSocket *> m_clients;

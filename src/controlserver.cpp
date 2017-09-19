@@ -234,19 +234,19 @@ void ControlServer::forward(){
 void ControlServer::backward(){
 	setPinValue(
 		m_pSettings->get_drivers_pin_A1(),
-		m_pSettings->get_drivers_forward_A1()
+		m_pSettings->get_drivers_backward_A1()
 	);
 	setPinValue(
 		m_pSettings->get_drivers_pin_A2(),
-		m_pSettings->get_drivers_forward_A2()
+		m_pSettings->get_drivers_backward_A2()
 	);
 	setPinValue(
 		m_pSettings->get_drivers_pin_B1(),
-		m_pSettings->get_drivers_forward_B1()
+		m_pSettings->get_drivers_backward_B1()
 	);
 	setPinValue(
 		m_pSettings->get_drivers_pin_B2(),
-		m_pSettings->get_drivers_forward_B2()
+		m_pSettings->get_drivers_backward_B2()
 	);
 }
 
@@ -318,9 +318,9 @@ void ControlServer::exportPin(int pin){
 void ControlServer::setPinValue(int pin, int value){
 	QFile file("/sys/class/gpio/gpio" + QString::number(pin) + "/value");
 	if (file.open(QIODevice::WriteOnly)){
+		qDebug() << "Set value " << value << " to " << pin;
 		QTextStream stream( &file );
 		stream << QString::number(value) << endl;
-		qDebug() << "Set value " << value << " to " << pin;
 	} else {
 		qDebug() << "Could not open gpio/value";
 	}
@@ -341,21 +341,24 @@ void ControlServer::directionOutPin(int pin){
 
 // ---------------------------------------------------------------------
 
-void ControlServer::pwmPin(int pin, qint64 width_signal_usec){
+void ControlServer::pwmPin(int pin, int width_signal_usec){
 	QString gpio_path = "/sys/class/gpio/gpio" + QString::number(pin) + "/value";
 	QFile file(gpio_path);
 	if (file.open(QIODevice::WriteOnly)){
 		qDebug() << "PWM on pin " << pin << " started for " << width_signal_usec;
 		QTextStream stream( &file );
 		int counter = 0;
+		QString one = QString::number(1);
+		QString zero = QString::number(0);
 		QElapsedTimer timer;
 		qint64 elapsed;
 		while(true){
+			qDebug() << "1";
 			timer.restart();
-			stream << QString::number(1) << endl;
+			stream << one << endl;
 			elapsed = timer.nsecsElapsed()/1000;
 			QThread::usleep(width_signal_usec);
-			stream << QString::number(0) << endl;
+			stream << zero << endl;
 			elapsed = timer.nsecsElapsed()/1000;
 			QThread::usleep(20000 - elapsed);
 			counter++;
