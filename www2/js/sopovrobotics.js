@@ -6,6 +6,7 @@ window.sopovrobotics.receive_settings = function(data){}
 window.sopovrobotics.receive_info = function(data){}
 window.sopovrobotics.receive_error = function(data){}
 window.sopovrobotics.receive_updated_settings = function(data){}
+window.sopovrobotics.receive_auto_stopped = function(){}
 
 window.sopovrobotics.connect = function(ipaddressport){
 	var self = window.sopovrobotics;
@@ -26,6 +27,8 @@ window.sopovrobotics.connect = function(ipaddressport){
 			self.receive_settings(data.data);
 		}else if(data.cmd == "update_settings"){
 			self.receive_updated_settings(data.data);
+		}else if(data.cmd == "auto_stopped"){
+			self.receive_auto_stopped();
 		}else{
 			console.warn(data);
 		}

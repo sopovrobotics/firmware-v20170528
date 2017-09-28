@@ -34,15 +34,15 @@
 	if(isset($_POST['update_settings'])){
 		$stmt = $conn->prepare('SELECT * FROM settings');
 		$settings_current = array();
-		if($stmt->execute(array($userid))){
-			if($stmt->execute()){
-				while($row = $stmt->fetch()){
-					$name = htmlspecialchars($row['name']);
-					$value = htmlspecialchars($row['value']);
-					$settings_current[$name] = $value;
-				}
-			}	
-		}
+		
+		if($stmt->execute()){
+			while($row = $stmt->fetch()){
+				$name = htmlspecialchars($row['name']);
+				$value = htmlspecialchars($row['value']);
+				$settings_current[$name] = $value;
+			}
+		}	
+		
 		foreach($settings as $k => $v){
 			if(isset($_POST[$k])){
 				if(isset($settings_current[$k])){
