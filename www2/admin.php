@@ -190,7 +190,7 @@
 					<div class="form-group row" id="script_result_input" style="display: none">
 						<div class="col-xs-12">
 							<label for="script_result">Result</label>
-							<input id="script_result" type="number" style="font-size: medium;" value="4" class="form-control"></input>
+							<input id="script_result" type="number" style="font-size: medium;" value="0" class="form-control"></input>
 						</div>
 					</div>
 				</div>
@@ -263,6 +263,7 @@
 				$('#script_id_for_save').val(scriptid);
 				$('#modalDialog').modal('show');
 				$('.start-script').hide();
+				time_start = new Date().getTime();
 				sopovrobotics.cmd_start_auto(script);
 				var count_down_t = 0; 
 				window.count_down = setInterval(function(){

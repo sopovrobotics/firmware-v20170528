@@ -244,7 +244,22 @@ turnright(400); // turn to the right 400ms
 	});
 			
 </script>
+		<!--
 		
+		by SopovRobotics 20170528
+		
+		Hardware
+
+Motor-reducer Gekko MR12-100 (2 pieces)
+Track Pololu 30T
+Pololu 5v Step-Up/Step-Down Voltage Regulator S7V7F5
+DRV8833 Dual Motor Driver Carrier
+OprangePi Zero
+Case for accumulator 18650
+Accumulator 18650
+Switcher
+		
+		 -->
 	</body>
 </html>
 
