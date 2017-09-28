@@ -2,6 +2,7 @@
 	session_start();
 	$curdir = dirname(__FILE__);
 	include_once ($curdir."/slib.php");
+	include_once ($curdir."/JShrink_Minifier.php");
 	
 	if(!isset($_SESSION['userid']) && !isset($_SESSION['role'])){
 		header("Location: index.php");
@@ -28,12 +29,16 @@
 
 	if(isset($_POST['new_code_script'])){
 		$code = $_POST['new_code_script'];
-		$stmt = $conn->prepare('INSERT INTO users_scripts(userid,script,status,time_exec,result) VALUES(?,?,?,?,?)');
-		if($stmt->execute(array($userid, $code, 'wait', 0, 0))){
+		
+		$minifier_code = JShrink_Minifier::minify($code);
+		$script_hash = md5($minifier_code);
+		
+		$stmt = $conn->prepare('INSERT INTO users_scripts(userid,script,minifier_script,md5_script,status,time_exec,result) VALUES(?,?,?,?,?,?,?)');
+		if($stmt->execute(array($userid, $code, $minifier_code, $script_hash, 'wait', 0, 0))){
 			http_response_code(200);
 		}else{
-			echo $stmt->errorInfo();
 			http_response_code(400);
+			print_r($stmt->errorInfo());
 		}
 		exit;
 	}
@@ -198,6 +203,13 @@ turnright(400); // turn to the right 400ms
 			}
 		}).done(function(){
 			window.location.reload();
+		}).fail(function(err){
+			console.error(err);
+			if(err.responseText){
+				alert(err.responseText);
+			}else{
+				alert("Wrong script");
+			}
 		});
 	});
 	

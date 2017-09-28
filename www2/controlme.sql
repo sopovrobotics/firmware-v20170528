@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Сен 20 2017 г., 02:00
+-- Время создания: Сен 29 2017 г., 03:20
 -- Версия сервера: 5.7.19-0ubuntu0.17.04.1
 -- Версия PHP: 7.0.22-0ubuntu0.17.04.1
 
@@ -62,8 +62,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `login`, `password`, `role`, `dt`) VALUES
 (1, 'user1', '356a192b7913b04c54574d18c28d46e6395428ab', 'user', '2017-09-10 22:29:04'),
 (2, 'user2', '356a192b7913b04c54574d18c28d46e6395428ab', 'user', '2017-09-10 22:29:24'),
-(3, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', '2017-09-10 22:32:08'),
-(4, '123', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'user', '2017-09-10 22:44:27');
+(3, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', '2017-09-10 22:32:08');
 
 -- --------------------------------------------------------
 
@@ -75,6 +74,8 @@ CREATE TABLE `users_scripts` (
   `id` int(4) NOT NULL,
   `userid` int(11) NOT NULL,
   `script` text NOT NULL,
+  `minifier_script` text NOT NULL,
+  `md5_script` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   `time_exec` int(11) NOT NULL,
   `result` int(11) NOT NULL
@@ -84,8 +85,8 @@ CREATE TABLE `users_scripts` (
 -- Дамп данных таблицы `users_scripts`
 --
 
-INSERT INTO `users_scripts` (`id`, `userid`, `script`, `status`, `time_exec`, `result`) VALUES
-(10, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'wait', 0, 0);
+INSERT INTO `users_scripts` (`id`, `userid`, `script`, `minifier_script`, `md5_script`, `status`, `time_exec`, `result`) VALUES
+(39, 1, 'forward(100); // forward 100ms\nbackward(200); // backward 200ms\nturnleft(400); // turn to the left 400ms\nturnright(400); // turn to the right 400ms\n				', 'forward(100);backward(200);turnleft(400);turnright(400);', 'ef5976ccf89be8b83cf7320974d72c7a', 'finish', 1305, 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -109,7 +110,8 @@ ALTER TABLE `users`
 -- Индексы таблицы `users_scripts`
 --
 ALTER TABLE `users_scripts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `md5_script` (`md5_script`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -129,7 +131,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users_scripts`
 --
 ALTER TABLE `users_scripts`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
