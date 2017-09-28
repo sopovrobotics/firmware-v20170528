@@ -116,6 +116,8 @@ void ThreadAuto::run(){
 	engine.collectGarbage();
 	QThread::usleep(200000);
 	
+	QObject *pThread = engine.globalObject().property("thread").toQObject();
+	((ThreadAuto *)pThread)->getControlServer()->send_auto_stopped();
 }
 
 // ---------------------------------------------------------------------

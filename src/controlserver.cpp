@@ -45,6 +45,8 @@ ControlServer::ControlServer(ISettings *pSett, QObject *parent) : QObject(parent
 	unexportPin(m_pSettings->get_servo_pin_comb());
 	exportPin(m_pSettings->get_servo_pin_comb());
 	directionOutPin(m_pSettings->get_servo_pin_comb());
+	
+	connect(this, &ControlServer::_sendAutoStoppedSignal, this, &ControlServer::_sendAutoStopped);
 }
 
 // ---------------------------------------------------------------------
@@ -330,9 +332,19 @@ void ControlServer::stop_auto(){
 
 // ---------------------------------------------------------------------
 
-/*void ControlServer::auto_stopped(){
-	// TODO send to client command
-}*/
+void ControlServer::_sendAutoStopped(){
+	QJsonObject obj;
+	obj["cmd"] = "auto_stopped";
+	for(int i = 0; i < m_clients.size(); i++){
+		sendMessage(m_clients[i], obj);
+	}
+}
+
+// ---------------------------------------------------------------------
+
+void ControlServer::send_auto_stopped(){
+	emit _sendAutoStoppedSignal();
+}
 
 // ---------------------------------------------------------------------
 

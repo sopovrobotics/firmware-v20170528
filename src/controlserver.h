@@ -35,17 +35,20 @@ class ControlServer : public QObject, public IControlServer {
 		virtual void comb_down();
 		virtual void start_auto(QString script);
 		virtual void stop_auto();
+		virtual void send_auto_stopped();
 		
 		bool hasError();
 				
 	Q_SIGNALS:
 		void closed();
+		void _sendAutoStoppedSignal();
 
 	private Q_SLOTS:
 		void onNewConnection();
 		void processTextMessage(QString message);
 		void processBinaryMessage(QByteArray message);
 		void socketDisconnected();
+		void _sendAutoStopped();
 
 	private:
 		bool m_bHasError;
