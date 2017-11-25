@@ -4,6 +4,8 @@
 	}, 1000);
 });*/
 
+var secret = 'I0vyjA1DrL5YwBtx89O2';
+
 function updateControl(s){
 	
 	var types = ['forward', 'backward', 'turnleft', 'turnright', 'stop'];
@@ -86,7 +88,7 @@ function drive(cmd){
 		return;
 	if(lastSendedCommand != cmd){
 		lastSendedCommand = cmd;
-		window.socket.send(JSON.stringify({'cmd':cmd}));
+		window.socket.send(JSON.stringify({'cmd':cmd, secret: secret}));
 	}
 }
 
@@ -115,11 +117,11 @@ function turnright(){
 }
 
 function comb_up(){
-	window.socket.send(JSON.stringify({'cmd':'comb_up'}));
+	window.socket.send(JSON.stringify({'cmd':'comb_up', secret: secret}));
 }
 
 function comb_down(){
-	window.socket.send(JSON.stringify({'cmd':'comb_down'}));
+	window.socket.send(JSON.stringify({'cmd':'comb_down', secret: secret}));
 }
 
 function stop(){
@@ -131,7 +133,7 @@ function stop_(){
 		return;
 	if(lastSendedCommand != 'stop'){
 		lastSendedCommand = 'stop';
-		window.socket.send(JSON.stringify({'cmd':'stop'}));
+		window.socket.send(JSON.stringify({'cmd':'stop', 'secret': secret}));
 	}
 }
 
